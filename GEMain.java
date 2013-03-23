@@ -11,24 +11,24 @@ public class GEMain {
     static GESlot SLOT_4 = new GESlot(3);
     static GESlot SLOT_5 = new GESlot(4);
     static GESlot SLOT_6 = new GESlot(5);
-    private static GESlot slots[] = {SLOT_1, SLOT_2, SLOT_3, SLOT_4, SLOT_5, SLOT_6};
+    private static GESlot SLOTS[] = {SLOT_1, SLOT_2, SLOT_3, SLOT_4, SLOT_5, SLOT_6};
 
-    public static GESlot randomUsedSlot() {
+    static GESlot randomUsedSlot() {
         if (emptySlotAmount() < 6) {
             int x = Random.nextInt(0, 5);
-            while (slots[x].isEmpty()) {
+            while (SLOTS[x].isEmpty()) {
                 x = Random.nextInt(0, 5);
             }
-            return slots[x];
+            return SLOTS[x];
         }
         return null;
     }
 
-    public static GESlot randomEmptySlot() {
+    static GESlot randomEmptySlot() {
         if (emptySlotAmount() > 0) {
             int x = Random.nextInt(0, 5);
-            if (slots[x].isEmpty()) {
-                return slots[x];
+            if (SLOTS[x].isEmpty()) {
+                return SLOTS[x];
             } else {
                 randomEmptySlot();
             }
@@ -36,18 +36,22 @@ public class GEMain {
         return null;
     }
 
-    public static GESlot randomSlot() {
-        return slots[Random.nextInt(0, 5)];
+    static GESlot randomSlot() {
+        return SLOTS[Random.nextInt(0, 5)];
     }
 
-    public static int emptySlotAmount() {
+    static int emptySlotAmount() {
         int x = 0;
         for (int i = 0; i < 6; i++) {
-            if (slots[i].isEmpty()) {
+            if (SLOTS[i].isEmpty()) {
                 x++;
             }
         }
         return x;
+    }
+    
+    static GESlot[] getAllSlots(){
+    return SLOTS;
     }
 
     public static boolean isMainOffersOpen() {
